@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title_block %}
+{{post.blog_title}}
+{% endblock %}
+
+{% block body %}
+
+<h2>{{post.blog_title}}</h2>
+<h4>Posted by : {{post.author}}</h4> <i><h6>Published : {{post.publish_date}} Last Update : {{post.update_date}}</h6></i>
+<br>
+<div class="text-center">
+
+
+<img src="/media/{{post.blog_image}}" alt="" width="300px">
+</div>
+<br>
+<p>{{post.blog_content}}</p>
+<hr>
+{% if not liked %}
+<a href="{% url 'Blog_App:liked_post' pk=post.pk %}">
+<i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"> </i>
+</a>
+{% else %}
+<a href="{% url 'Blog_App:unliked_post' pk=post.pk %}">
+<i class="fa fa-thumbs-o-down fa-2x" aria-hidden="true"> </i>
+</a>
+{% endif %}
+<br>
+<div class="">
+  <form class="" method="POST">
+    {{ comment_form|crispy }}
+    {% csrf_token %}
+    <br>
+    <button type="submit" class="btn btn-info btn-sm">Submit</button>
+  </form>
+</div>
+<div>
+  <h3>Latest Comment</h3>
+  {% for comment in post.blog_comment.all %}
+    <h6>{{comment.user}} | {{comment.comment_date}}</h6>
+    <p>{{comment.comment}}</p>
+    <hr>
+  {% endfor %}
+
+</div>
+
+{% endblock %}

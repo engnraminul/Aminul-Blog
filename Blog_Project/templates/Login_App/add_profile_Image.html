@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title_block %} Create New Account {% endblock %}
+
+{% block body %}
+<h2>Add Profile Picture</h2>
+<img class="rounded-circle" width="100px" src="/media/{{user.user_profile.profile_pic}}" alt="">
+<form class="" method="POST" enctype="multipart/form-data">
+  {{form|crispy}}
+  {% csrf_token %}
+  <button class="btn btn-success" type="Submit" name="submit">Update</button>
+</form>
+{% endblock %}

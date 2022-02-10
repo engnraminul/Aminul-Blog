@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title_block %} Create New Account {% endblock %}
+
+{% block body %}
+<h2>My Profile</h2>
+
+{% if user.user_profile %}
+<img class="rounded-circle" width="100px" src="/media/{{user.user_profile.profile_pic}}" alt="">
+<br>
+<a class="btn btn-info btn-sm" href="{% url 'Login_App:change_profile_image' %}">Change Image</a>
+{% else %}
+<img class="rounded-circle" width="100px" src="/media/profile_pics/profile.jpg" alt="">
+<br>
+<br>
+<a class="btn btn-info btn-sm" href="{% url 'Login_App:add_profile_Image' %}">Add Image</a>
+{% endif %}
+<p>Username : {{user.username}}</p>
+<p>Name : {{user.first_name}} {{user.last_name}}</p>
+<p>Email : {{user.email}}</p>
+<br>
+<a class="btn btn-warning" href="{% url 'Login_App:profile_update' %}">Edit Profile</a>
+
+{% endblock %}
