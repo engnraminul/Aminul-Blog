@@ -18,6 +18,7 @@
 <p>Username : {{user.username}}</p>
 <p>Name : {{user.first_name}} {{user.last_name}}</p>
 <p>Email : {{user.email}}</p>
+<h6>Like : {{user.user_comment.count}} Comment : {{user.user_comment.count}}</h6>
 <br>
 <a class="btn btn-warning" href="{% url 'Login_App:profile_update' %}">Edit Profile</a>
 

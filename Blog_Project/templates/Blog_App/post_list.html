@@ -16,7 +16,7 @@ Home
   <div class="col-sm-8">
     <p>{{post.blog_content|range_filter|linebreaks}} <a href="{% url 'Blog_App:post_details' slug=post.slug %}">see more</a></p>
     <h6>Posted By :<a href="{% url 'Login_App:profile' %}">{{post.author}}</a></h6>
-    <h6>Plublish : {{post.publish_date}}</h6>
+    <h6>Plublish : {{post.publish_date}}   {{post.blog_like.count}} Like | {{post.blog_comment.count}} Comment</h6> 
   </div>
 
 </div>
