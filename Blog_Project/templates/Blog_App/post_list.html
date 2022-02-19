@@ -5,21 +5,30 @@ Home
 {% endblock %}
 
 {% block body %}
-<h1>Post List</h1>
 {% for post in posts %}
-<h1>{{post.blog_title}}</h1>
+<div class="card" style="width: 80rem;" href="{% url 'Blog_App:post_details' slug=post.slug %}">
+<h2>{{post.blog_title}}</h2>
+
 <div class="row">
   <div class="col-sm-4">
-    <img src="/media/{{post.blog_image}}" alt="{{post.blog_title}}" title="{{post.blog_title}}" width="200px">
+    <img src="/media/{{post.blog_image}}" alt="{{post.blog_title}}" title="{{post.blog_title}}" width="420px" height="260px">
 
   </div>
   <div class="col-sm-8">
     <p>{{post.blog_content|range_filter|linebreaks}} <a href="{% url 'Blog_App:post_details' slug=post.slug %}">see more</a></p>
     <h6>Posted By :<a href="{% url 'Login_App:profile' %}">{{post.author}}</a></h6>
-    <h6>Plublish : {{post.publish_date}}   {{post.blog_like.count}} Like | {{post.blog_comment.count}} Comment</h6> 
+    <h6>Plublish : {{post.publish_date}}  [ {{post.blog_like.count}} Like | {{post.blog_comment.count}} Comment]</h6>
+
+
+    {% if post.author == user %}
+    <a href="{% url 'Blog_App:edit_post' pk=post.pk %}">Edit Post</a> |
+    <a href="{% url 'Blog_App:delete_post' pk=post.pk %}">Delete Post</a>
+    {% endif %}
   </div>
 
 </div>
-<hr>
+</div>
+<br>
+<br>
 {% endfor %}
 {% endblock %}
