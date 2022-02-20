@@ -6,6 +6,7 @@ Home
 
 {% block body %}
 {% for post in posts %}
+<br>
 <div class="card" style="width: 80rem;" href="{% url 'Blog_App:post_details' slug=post.slug %}">
 <h2>{{post.blog_title}}</h2>
 
@@ -28,7 +29,6 @@ Home
 
 </div>
 </div>
-<br>
 <br>
 {% endfor %}
 {% endblock %}
